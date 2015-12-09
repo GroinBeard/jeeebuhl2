@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="test" name="G53SQM" basedir=".">
+	<target name="clean">
+		<delete dir="classes"></delete>
+	</target>
+	<target name="create" depends="clean">
+		<mkdir dir="classes"/>
+		<javac srcdir="..\src\g53sqm\jibble"
+		 destdir="classes"
+			includeantruntime="true"/>
+	</target>
+	<target name="jar" depends="create">
+		<jar destfile="jibble.jar" basedir="classes">
+			<manifest>
+				<attribute name="Main-Class" value="g53sqm.jibble.WebServerMain" />
+			</manifest>
+		</jar>
+	</target>
+	<target name="test" depends="jar">
+		<java jar= "jibble.jar" fork="true" />
+	</target>
+</project>
